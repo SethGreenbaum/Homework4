@@ -21,13 +21,13 @@
     </div>
     <div class="row">
         <div class="col-md-3">
-            <h1><span class="badge badge-pill badge-primary">Primary</span></h1>
+            <h1><a href="./score.html" class="badge badge-pill badge-success">High Scores</a></h1>
             <table class="table table-sm">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Score</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -50,22 +50,37 @@
         </div>
         <div class="col-md-6 justify-content-center">
             <div class="jumbotron" id="question-display">
-                <h1 class="display-4">Hello, world!</h1>
-                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <h1 class="display-4">Test Your Coding Skills!</h1>
+                <p class="lead">You have 30 seconds, correct answers give you ten points, wrong answers take 5 seconds off the clock, good luck!</p>
                 <hr class="my-4">
-                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-                <a class="btn btn-primary btn-lg" href="#" role="button" id="start-button">Learn more</a>
+                <p>Ready?</p>
+                <a class="btn btn-primary btn-lg" href="#" role="button" id="start-button">Start Quiz</a>
             </div>
             <div class="list-group d-none" id="question-form">
-                <li class="list-group-item list-group-item-primary">This is a primary list group item</li>
-                <button type="button" class="list-group-item list-group-item-action">Cras justo odio</button>
-                <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
-                <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
-                <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
-              </div>
+                <li class="list-group-item list-group-item-primary"><span id="question-field">Question</span></li>
+                <button type="button" class="list-group-item list-group-item-action"><span id="answer-one">Answer</span></button>
+                <button type="button" class="list-group-item list-group-item-action"><span id="answer-two">Answer</span></button>
+                <button type="button" class="list-group-item list-group-item-action"><span id="answer-three">Answer</span></button>
+                <button type="button" class="list-group-item list-group-item-action"><spa id="answer-four">Answer</spa></button>
+            </div>
+            <form id="score-form" class="d-none">
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-md-2 col-form-label">Score:</label>
+                    <div class="col-md-10">
+                      <input type="text" readonly class="form-control-plaintext" id="score-field" value="score">
+                    </div>
+                  </div>
+                <div class="form-group row">
+                  <label for="exampleInputPassword1" class="col-md-2 col-form-label">Name:</label>
+                  <div class="col-md-10">
+                    <input type="name" class="form-control" id="name-field">
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
         </div>
         <div class="col-md-3 justify-content-center">
-            <h1><span class="badge badge-pill badge-primary">Primary</span>     <span class="align-bottom">23</span></h1>
+            <h1><span class="badge badge-pill badge-primary">Timer</span>     <span class="align-bottom" id="timer">ß</span></h1>
         </div>
     </div>
     <script src="./script.js"></script>
