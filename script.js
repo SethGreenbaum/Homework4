@@ -2,43 +2,38 @@ var startButton = $("#start-button");
 var questionDisplay = $("#question-display");
 var questionForm =$("#question-form");
 var timerValue =$("#timer");
+var questionField = $("#question-field");
+var answerOne = $("#answer-one");
+var answerTwo = $("#answer-two");
+var answerThree = $("#answer-three");
+var answerFour = $("#answer-four"); 
+var answerButton = $(".answer");
+var scoreCard = $("#score-card");
+var scoreField = $(".card-text");
+var scoreButton = $(".score");
+var answerStatus = $("#answer-status");
+var submitButton = $("#submit");
+var scoreReturn = JSON.parse(localStorage.getItem("score"));
+var scoreName = $(".score-name");
+var scoreScore = $(".score-score");
+var x = 0;
 
-var secondsDisplay = 0;
+var secondsDisplay = 30;
 
 var secondsStart;
 
+var score = 0;
+
 timerDisplay();
+
+if (scoreReturn !== null) {
+scoreName.text(scoreReturn.name);
+scoreScore.text(scoreReturn.score);
+};
 
 function timerDisplay() {
     timerValue.text(secondsDisplay);
 };
-
-function clock() {
-    secondsDisplay--;
-    timerDisplay();
-    console.log(secondsDisplay);
-};
-
-function stopTimer(){
-    clearInterval(secondsStart);
-    secondsDisplay = 0;
-    timerDisplay();
-}
-
-function startTimer(){
-    secondsDisplay = 30;
-    timerDisplay();
-    timerInterval();
-};
-
-function tickTock() {
-    secondsStart = setInterval(clock,1000);
-};
-
-function timerInterval(){
-    tickTock();
-};
-
 
 
 var questions = [
@@ -76,11 +71,91 @@ var questions = [
     }
   ];
 
+
+function setQuestions() {
+  questionField.text(questions[x].title);
+  answerOne.text(questions[x].choices[0]);
+  answerTwo.text(questions[x].choices[1]);
+  answerThree.text(questions[x].choices[2]);
+  answerFour.text(questions[x].choices[3]);
+
+}
+
+answerButton.on("click", function(){
+  if (x < 4 ){
+    x++;
+
+    questionField.text(questions[x].title);
+    answerOne.text(questions[x].choices[0]);
+    answerTwo.text(questions[x].choices[1]);
+    answerThree.text(questions[x].choices[2]);
+    answerFour.text(questions[x].choices[3]);
+
+    if ($(this).text()===questions[x].answer){
+      score += 10;
+      alert("correct");
+    } else {
+      score -= 5;
+      alert("incorrect");
+      secondsDisplay -= 2;
+    };
+  } else {
+    if ($(this).text()===questions[x].answer){
+      score += 10;
+      alert("correct");
+      endGame();
+    } else {
+      score -= 5;
+      alert("incorrect");
+      secondsDisplay -= 2;
+      endGame();
+    };
+  }
+  });
+
+
+
 startButton.on("click", function () {
     questionDisplay.attr("class", "d-none");
     questionForm.attr("class","d-block");
-    startTimer();
+    setTime();
+    setQuestions();
+    });
+
+
+scoreButton.on("click", function(){
+    scoreField.text(score);
 });
+
+submitButton.on("click", function(){
+  var namePrompt = prompt("Enter Name");
+  var scoreUser = {
+    name: namePrompt,
+    score: score,
+  };
+  localStorage.setItem("score",JSON.stringify(scoreUser));
+});
+
+
+function endGame() {
+  questionForm.attr("class","d-none");
+  scoreCard.attr("class","d-block");
+  secondsDisplay = 1;
+}
+
+function setTime() {
+      var timerInterval = setInterval(function() {
+        secondsDisplay--;
+        timerDisplay();
+        if(secondsDisplay <= 0) {
+          clearInterval(timerInterval);
+          timerDisplay();
+          endGame();
+        }
+    
+      }, 1000);
+}
+
 
 //coutdown timer, subtract 15 seconds from wrong answers
 //timer is initiated by button

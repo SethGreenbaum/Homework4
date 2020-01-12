@@ -33,17 +33,17 @@
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
+                    <td><span class="score-name"></span></td>
+                    <td><span class="score-score"></span></td>
                   </tr>
                   <tr>
                     <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
+                    <td></td>
+                    <td></td>
                   </tr>
                   <tr>
                     <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
+                    <td colspan="2"></td>
                   </tr>
                 </tbody>
               </table>
@@ -51,17 +51,17 @@
         <div class="col-md-6 justify-content-center">
             <div class="jumbotron" id="question-display">
                 <h1 class="display-4">Test Your Coding Skills!</h1>
-                <p class="lead">You have 30 seconds, correct answers give you ten points, wrong answers take 5 seconds off the clock, good luck!</p>
+                <p class="lead">You have 30 seconds, correct answers give you ten points, wrong answers take 2 seconds off the clock, good luck!</p>
                 <hr class="my-4">
                 <p>Ready?</p>
                 <a class="btn btn-primary btn-lg" href="#" role="button" id="start-button">Start Quiz</a>
             </div>
             <div class="list-group d-none" id="question-form">
                 <li class="list-group-item list-group-item-primary"><span id="question-field">Question</span></li>
-                <button type="button" class="list-group-item list-group-item-action"><span id="answer-one">Answer</span></button>
-                <button type="button" class="list-group-item list-group-item-action"><span id="answer-two">Answer</span></button>
-                <button type="button" class="list-group-item list-group-item-action"><span id="answer-three">Answer</span></button>
-                <button type="button" class="list-group-item list-group-item-action"><spa id="answer-four">Answer</spa></button>
+                <button type="button" class="list-group-item list-group-item-action answer"><span id="answer-one">Answer</span></button>
+                <button type="button" class="list-group-item list-group-item-action answer"><span id="answer-two">Answer</span></button>
+                <button type="button" class="list-group-item list-group-item-action answer"><span id="answer-three">Answer</span></button>
+                <button type="button" class="list-group-item list-group-item-action answer"><spa id="answer-four">Answer</spa></button>
             </div>
             <form id="score-form" class="d-none">
                 <div class="form-group row">
@@ -77,7 +77,21 @@
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-              </form>
+            </form>
+            <div class="card text-center d-none" id="score-card">
+              <div class="card-header">
+                Good Job!
+              </div>
+              <div class="card-body">
+                <h5 class="card-title">Your Score:</h5>
+                <p class="card-text"></p>
+                <a href="#" class="btn btn-primary score">See How You Did</a>
+                <a href="#" class="btn btn-primary" id="submit">Submit Score</a>
+                <a href="index.html" class="btn btn-primary" id="try-again">Try Again</a>
+              </div>
+              <div class="card-footer text-muted">
+              </div>
+            </div>
         </div>
         <div class="col-md-3 justify-content-center">
             <h1><span class="badge badge-pill badge-primary">Timer</span>     <span class="align-bottom" id="timer">ß</span></h1>
