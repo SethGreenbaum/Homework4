@@ -81,17 +81,12 @@ function setQuestions() {
 
 }
 
+
 answerButton.on("click", function(){
+  console.log($(this).text());
   if (x < 4 ){
-    x++;
 
-    questionField.text(questions[x].title);
-    answerOne.text(questions[x].choices[0]);
-    answerTwo.text(questions[x].choices[1]);
-    answerThree.text(questions[x].choices[2]);
-    answerFour.text(questions[x].choices[3]);
-
-    if ($(this).text()===questions[x].answer){
+    if ($(this).text() === questions[x].answer){
       score += 10;
       alert("correct");
     } else {
@@ -99,8 +94,16 @@ answerButton.on("click", function(){
       alert("incorrect");
       secondsDisplay -= 5;
     };
+    x++;
+    
+    questionField.text(questions[x].title);
+    answerOne.text(questions[x].choices[0]);
+    answerTwo.text(questions[x].choices[1]);
+    answerThree.text(questions[x].choices[2]);
+    answerFour.text(questions[x].choices[3]);
+    
   } else {
-    if ($(this).text()===questions[x].answer){
+    if ($(this).text() === questions[x].answer){
       score += 10;
       alert("correct");
       endGame();
@@ -157,19 +160,6 @@ function setTime() {
 }
 
 
-//coutdown timer, subtract 15 seconds from wrong answers
-//timer is initiated by button
-//0 on timer ends the game
-//algorithms sections have timer
-//initials and scores got into local storage
-//view high scores button
-//time counter in corner
-//use bootstrap
-//create div, then override content with object
-//Scores can be determined as I wish
-//you can use a second html file for high score page
-//use a for loop to loop through questions instead of next button
-//flash "correct" or "incorrect"
-//use multiple javascript files
+
 
 
