@@ -1,4 +1,5 @@
 var startButton = $("#start-button");
+var clearButton =$(".clear");
 var questionDisplay = $("#question-display");
 var questionForm =$("#question-form");
 var timerValue =$("#timer");
@@ -14,22 +15,60 @@ var scoreButton = $(".score");
 var answerStatus = $("#answer-status");
 var submitButton = $("#submit");
 var scoreReturn = JSON.parse(localStorage.getItem("score"));
+console.log(scoreReturn);
 var scoreName = $(".score-name");
 var scoreScore = $(".score-score");
+var scoreNameTwo = $(".score-name-two");
+var scoreScoreTwo = $(".score-score-two");
+var scoreNameThree = $(".score-name-three");
+var scoreScoreThree = $(".score-score-three");
 var x = 0;
-
 var secondsDisplay = 30;
 
 var secondsStart;
+var highScore = [];
 
+
+var scoreUser;
 var score = 0;
 
 timerDisplay();
 
-if (scoreReturn !== null) {
-scoreName.text(scoreReturn.name);
-scoreScore.text(scoreReturn.score);
+
+function scoreDisplay() {
+
+if (scoreReturn.length === 2){
+  console.log("c2");
+  scoreReturn.sort(function(a, b){return b.score - a.score});
+  scoreName.text(scoreReturn[0].name); 
+  scoreScore.text(scoreReturn[0].score);
+  scoreNameTwo.text(scoreReturn[1].name); 
+  scoreScoreTwo.text(scoreReturn[1].score);
+} else if (scoreReturn.length >= 3){
+  console.log("c3");
+  scoreReturn.sort(function(a, b){return b.score - a.score});
+  scoreName.text(scoreReturn[0].name); 
+  scoreScore.text(scoreReturn[0].score);
+  scoreNameTwo.text(scoreReturn[1].name); 
+  scoreScoreTwo.text(scoreReturn[1].score);
+  scoreNameThree.text(scoreReturn[2].name); 
+  scoreScoreThree.text(scoreReturn[2].score);
+} else {
+  console.log("c1");
+  scoreReturn = [scoreReturn];
+  scoreName.text(scoreReturn[0].name); 
+  scoreScore.text(scoreReturn[0].score);};
 };
+
+if (scoreReturn === null) {
+  console.log("null");
+  scoreName.text(""); 
+  scoreScore.text("");
+  scoreNameTwo.text("");
+  scoreScoreTwo.text("");
+  scoreNameThree.text("");
+  scoreScoreThree.text("");
+} else {scoreDisplay()};
 
 function timerDisplay() {
     timerValue.text(secondsDisplay);
@@ -83,7 +122,6 @@ function setQuestions() {
 
 
 answerButton.on("click", function(){
-  console.log($(this).text());
   if (x < 4 ){
 
     if ($(this).text() === questions[x].answer){
@@ -131,14 +169,28 @@ scoreButton.on("click", function(){
 });
 
 submitButton.on("click", function(){
+  
   var namePrompt = prompt("Enter Name");
-  var scoreUser = {
+  scoreUser= {
     name: namePrompt,
     score: score,
   };
+  
+
+  if (scoreReturn !== null) {
+  scoreReturn.push(scoreUser);
+  localStorage.clear();
+  localStorage.setItem("score",JSON.stringify(scoreReturn));
+  } else {
   localStorage.setItem("score",JSON.stringify(scoreUser));
+  };
+
 });
 
+clearButton.on("click", function(){
+  localStorage.clear();
+  location.reload();
+});
 
 function endGame() {
   questionForm.attr("class","d-none");
