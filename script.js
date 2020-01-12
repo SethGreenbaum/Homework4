@@ -97,7 +97,7 @@ answerButton.on("click", function(){
     } else {
       score -= 5;
       alert("incorrect");
-      secondsDisplay -= 2;
+      secondsDisplay -= 5;
     };
   } else {
     if ($(this).text()===questions[x].answer){
@@ -107,7 +107,7 @@ answerButton.on("click", function(){
     } else {
       score -= 5;
       alert("incorrect");
-      secondsDisplay -= 2;
+      secondsDisplay -= 5;
       endGame();
     };
   }
